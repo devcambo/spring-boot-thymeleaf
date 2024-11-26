@@ -14,13 +14,13 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf((csrf) -> csrf.ignoringRequestMatchers("/saveMsg"))
+        http.csrf((csrf) -> csrf.ignoringRequestMatchers("/saveMsg").ignoringRequestMatchers("/createUser"))
                 .authorizeHttpRequests((requests) -> requests.requestMatchers("/dashboard").authenticated()
                         .requestMatchers("/", "/home").permitAll()
                         .requestMatchers("/contact").permitAll()
                         .requestMatchers("/saveMsg").permitAll()
                         .requestMatchers("/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/createUser").permitAll()
+                        .requestMatchers("/createUser").permitAll()
                         .requestMatchers(HttpMethod.GET, "/post/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/author/**").permitAll()
                         .requestMatchers("/assets/**").permitAll()

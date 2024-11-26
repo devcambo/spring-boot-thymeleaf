@@ -1,5 +1,6 @@
 package com.devcambo.springbootthymeleaf.service;
 
+import com.devcambo.springbootthymeleaf.model.Role;
 import com.devcambo.springbootthymeleaf.model.User;
 import com.devcambo.springbootthymeleaf.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class UserService {
 
     public boolean save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Role role = new Role();
+        role.setRoleName("User");
+        user.setRole(role);
         User savedUser = userRepo.save(user);
         return savedUser.getUserId() > 0;
     }

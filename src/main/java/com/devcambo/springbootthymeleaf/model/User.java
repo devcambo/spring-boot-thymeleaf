@@ -7,7 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Data
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
@@ -17,6 +17,9 @@ public class User {
     private String password;
     @Column(unique = true)
     private String email;
-    private String role;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, targetEntity = Role.class)
+    @JoinColumn(name = "role_id", referencedColumnName = "roleId",nullable = false)
+    private Role role;
 
 }

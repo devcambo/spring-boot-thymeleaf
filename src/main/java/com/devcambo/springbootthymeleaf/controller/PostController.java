@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 public class PostController {
 
+    @GetMapping("/post/all")
+    public String DisplayPostAllPosts(Model model) {
+        return "dashboard";
+    }
+
     @GetMapping("/post/{id}")
     public String DisplayPostDetail(@PathVariable("id") String postId, Model model) {
         log.info("The id of the post is {} ", postId);

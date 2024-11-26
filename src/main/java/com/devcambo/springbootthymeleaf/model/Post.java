@@ -1,4 +1,4 @@
 package com.devcambo.springbootthymeleaf.model;
 
-public class Post {
+public class Post extends BaseEntity {
 }
