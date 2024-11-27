@@ -14,8 +14,12 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf((csrf) -> csrf.ignoringRequestMatchers("/saveMsg").ignoringRequestMatchers("/createUser"))
-                .authorizeHttpRequests((requests) -> requests.requestMatchers("/dashboard").authenticated()
+        http.csrf((csrf) -> csrf
+                        .ignoringRequestMatchers("/saveMsg")
+                        .ignoringRequestMatchers("/createUser"))
+                .authorizeHttpRequests((requests) -> requests
+                        /*.requestMatchers("/dashboard").authenticated()
+                        .requestMatchers("/category").authenticated()*/
                         .requestMatchers("/", "/home").permitAll()
                         .requestMatchers("/contact").permitAll()
                         .requestMatchers("/saveMsg").permitAll()
@@ -25,7 +29,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/author/**").permitAll()
                         .requestMatchers("/assets/**").permitAll()
                         .requestMatchers("/login").permitAll()
-                        .requestMatchers("/logout").permitAll())
+                        .requestMatchers("/logout").permitAll()
+                        .anyRequest().authenticated()
+                )
                 .formLogin(loginConfigurer -> loginConfigurer.loginPage("/login")
                         .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll())
                 .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")

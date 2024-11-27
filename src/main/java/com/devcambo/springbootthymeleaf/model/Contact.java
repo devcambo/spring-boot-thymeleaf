@@ -3,17 +3,17 @@ package com.devcambo.springbootthymeleaf.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 @Entity
 @Table(name = "contacts")
 public class Contact extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
-    @GenericGenerator(name = "native", strategy = "native")
     private int contactId;
     private String name;
     @NotEmpty

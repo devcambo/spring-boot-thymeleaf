@@ -30,6 +30,9 @@
                     <a class="nav-link" th:href="@{/register}">Register</a>
                 </li>
                 <li class="nav-item active" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
+                </li>
+                <li class="nav-item active" sec:authorize="isAuthenticated()">
                     <a class="nav-link" th:href="@{/logout}">Logout</a>
                 </li>
 
